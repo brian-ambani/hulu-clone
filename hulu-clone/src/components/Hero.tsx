@@ -4,10 +4,6 @@ import GlobalApi from "../services/GlobalApi";
 const Hero = () => {
   const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
 
-  interface Movie {
-    // Define the properties of a movie
-  }
-
   const [movieList, setMovieList] = useState<any>([]);
 
   useEffect(() => {
@@ -17,7 +13,8 @@ const Hero = () => {
   const getPopularMovies = () => {
     GlobalApi.getPopularMovies.then((res: any) => {
       const results = res.data.results;
-      setMovieList(results[1]);
+      const random = Math.floor(Math.random() * results.length);
+      setMovieList(results[random]);
     });
   };
   return (
